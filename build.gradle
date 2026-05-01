@@ -1,0 +1,318 @@
+/**
+ * ============================================================
+ *  NewsFlow — app/build.gradle
+ *  Day 1 of 14: Project Skeleton + Build Configuration
+ * ============================================================
+ *
+ *  WHAT THIS FILE DOES:
+ *  --------------------
+ *  This is the build script for the "app" module of NewsFlow.
+ *  Think of it as the blueprint Android Studio uses to:
+ *    1. Know which Android features your app needs
+ *    2. Download all the third-party libraries your code will use
+ *    3. Set up rules for compiling your Kotlin/Compose code
+ *
+ *  CONNECTIONS TO OTHER FILES:
+ *  ----------------------------
+ *  → Day 2: Constants.kt will use the NEWS_API_KEY we define here
+ *  → Day 4: RetrofitInstance.kt will use the Retrofit library listed below
+ *  → Day 8: NewsCard.kt will use the Compose libraries listed below
+ *  → Day 11: GeminiClient.kt will use the Google AI library listed below
+ *
+ *  HOW TO USE THIS FILE:
+ *  ----------------------
+ *  1. Replace this file's content in your Android project's app/build.gradle
+ *  2. Add your API key to local.properties (see instruction at bottom)
+ *  3. Click "Sync Now" in Android Studio when prompted
+ * ============================================================
+ */
+
+// ---------------------------------------------------------------------------
+// PLUGIN BLOCK
+// Plugins are tools that extend Gradle's build capabilities.
+// ---------------------------------------------------------------------------
+plugins {
+    // The core Android application plugin — tells Gradle this module is an Android app
+    id 'com.android.application'
+
+    // Kotlin plugin for Android — enables us to write Kotlin instead of Java
+    id 'org.jetbrains.kotlin.android'
+}
+
+// ---------------------------------------------------------------------------
+// ANDROID BLOCK
+// All Android-specific settings live here.
+// ---------------------------------------------------------------------------
+android {
+
+    // The unique identifier for your app on Google Play and the device.
+    // Format: reverse domain name (e.g., com.yourname.appname)
+    namespace 'com.karthik.newsflow'
+
+    // The API level used to COMPILE the app.
+    // 34 = Android 14. Always use the latest stable SDK here.
+    compileSdk 34
+
+    // Default configuration that applies to all build variants (debug + release)
+    defaultConfig {
+
+        // Must match the namespace above — this is your app's unique ID on the Play Store
+        applicationId "com.karthik.newsflow"
+
+        // The MINIMUM Android version your app will support.
+        // SDK 24 = Android 7.0 Nougat. Covers ~95%+ of active Android devices.
+        minSdk 24
+
+        // The Android version your app is TARGETING (tested against).
+        // Should match compileSdk.
+        targetSdk 34
+
+        // Version code is an integer that increases with each release (e.g., 1, 2, 3...)
+        // Used by the Play Store to identify newer versions.
+        versionCode 1
+
+        // Version name is the human-readable version shown to users (e.g., "1.0", "2.1.3")
+        versionName "1.0"
+
+        // Required for running instrumented tests (tests that run on a real device/emulator)
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        // -----------------------------------------------------------------------
+        //  API KEY INJECTION
+        //  We read the API key from local.properties (which is NOT committed to Git)
+        //  and inject it into BuildConfig so Kotlin code can access it safely.
+        //
+        //  After syncing, you can access it in Kotlin like:
+        //      BuildConfig.NEWS_API_KEY
+        //
+        //  Day 2's Constants.kt will use this value.
+        // -----------------------------------------------------------------------
+        def localProperties = new Properties()
+        def localPropertiesFile = rootProject.file("local.properties")
+        if (localPropertiesFile.exists()) {
+            localPropertiesFile.withReader('UTF-8') { reader ->
+                localProperties.load(reader)
+            }
+        }
+
+        buildConfigField "String", "NEWS_API_KEY", "\"${localProperties['NEWS_API_KEY'] ?: ''}\""
+        buildConfigField "String", "GEMINI_API_KEY", "\"${localProperties['GEMINI_API_KEY'] ?: ''}\""
+    }
+
+    // Build types define different versions of your app (debug vs release)
+    buildTypes {
+
+        // 'debug' is the version you run on your phone during development.
+        // It has extra logging, slower performance, and cannot be published.
+        debug {
+            // minifyEnabled = false means: don't shrink/obfuscate code (faster builds)
+            minifyEnabled false
+        }
+
+        // 'release' is the version you publish to the Play Store.
+        // It's optimised, minified, and signed with your key.
+        release {
+            // Enables code shrinking (removes unused code) and obfuscation (renames classes)
+            minifyEnabled false
+            // Points to the rules file for ProGuard/R8 code shrinker
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // Kotlin compilation options
+    compileOptions {
+        // Use Java 8 features (lambdas, streams, etc.) — required by many modern libraries
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    // Kotlin-specific compilation settings
+    kotlinOptions {
+        // Target JVM 1.8 bytecode — matches the compileOptions above
+        jvmTarget = '1.8'
+    }
+
+    // Feature flags that enable specific Jetpack capabilities
+    buildFeatures {
+        // COMPOSE: Enable Jetpack Compose — the modern declarative UI toolkit.
+        // Without this, none of our @Composable functions (Day 8+) will compile.
+        compose true
+
+        // BUILDCONFIG: Allow access to BuildConfig class (needed for our API key above)
+        buildConfig true
+    }
+
+    // Compose compiler settings
+    composeOptions {
+        // This version MUST match the Kotlin version you're using.
+        // Compose compiler 1.5.8 is compatible with Kotlin 1.9.22
+        // Check compatibility: https://developer.android.com/jetpack/androidx/releases/compose-kotlin
+        kotlinCompilerExtensionVersion '1.5.8'
+    }
+
+    // Prevents build errors when multiple libraries include the same file
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------
+// DEPENDENCIES BLOCK
+// Libraries your app needs. Gradle downloads these from Maven Central / Google.
+// Format: implementation 'group:artifact:version'
+// ---------------------------------------------------------------------------
+dependencies {
+
+    // -----------------------------------------------------------------------
+    //  ANDROID CORE LIBRARIES
+    //  These are the foundation — basic Android functionality.
+    // -----------------------------------------------------------------------
+
+    // Core KTX: Kotlin extensions that make Android APIs more concise
+    implementation 'androidx.core:core-ktx:1.12.0'
+
+    // Lifecycle: Manages UI-related data in a lifecycle-conscious way
+    // Used by our ViewModel (Day 6) to survive screen rotations
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.7.0'
+
+    // Activity Compose: Bridge between the old Activity system and Compose
+    // Required to use setContent { } in MainActivity
+    implementation 'androidx.activity:activity-compose:1.8.2'
+
+    // -----------------------------------------------------------------------
+    //  JETPACK COMPOSE — UI FRAMEWORK
+    //  These libraries make up the Compose ecosystem.
+    //  Used starting Day 8 (NewsCard.kt) through Day 13 (SearchBar.kt).
+    // -----------------------------------------------------------------------
+
+    // Bill of Materials (BOM): Ensures all Compose libraries use COMPATIBLE versions
+    // You only specify the BOM version once; all compose-* versions are auto-managed
+    implementation platform('androidx.compose:compose-bom:2024.02.00')
+
+    // Compose UI: Core drawing and layout primitives (Box, Row, Column, etc.)
+    implementation 'androidx.compose.ui:ui'
+
+    // Compose UI Graphics: Drawing APIs (Canvas, shapes, paths)
+    implementation 'androidx.compose.ui:ui-graphics'
+
+    // Compose UI Tooling Preview: Enables @Preview in Android Studio
+    implementation 'androidx.compose.ui:ui-tooling-preview'
+
+    // Material 3: Google's design system components (Button, Card, TopAppBar, etc.)
+    // We'll use this for NewsCard (Day 8) and other UI components
+    implementation 'androidx.compose.material3:material3'
+
+    // Material Icons (Extended): Extra icons like bookmark, share, search
+    // Used in Day 13's SearchBar and Day 14's bookmark feature
+    implementation 'androidx.compose.material:material-icons-extended'
+
+    // -----------------------------------------------------------------------
+    //  NAVIGATION
+    //  Jetpack Navigation Compose: Manages screen-to-screen navigation.
+    //  Used in Day 10 (NavGraph.kt) to navigate from Home → Detail screen.
+    // -----------------------------------------------------------------------
+    implementation 'androidx.navigation:navigation-compose:2.7.7'
+
+    // -----------------------------------------------------------------------
+    //  NETWORKING — RETROFIT + OKHTTP
+    //  Retrofit makes HTTP requests easy. OkHttp is the engine underneath it.
+    //  Used in Day 4 (NewsApiService.kt + RetrofitInstance.kt).
+    // -----------------------------------------------------------------------
+
+    // Retrofit 2: Type-safe HTTP client for Android and Java
+    // Turns API calls into simple Kotlin function calls
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+
+    // Retrofit Gson Converter: Automatically converts JSON responses to Kotlin data classes
+    // Used with Article.kt and NewsResponse.kt (Day 3)
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    // OkHttp: The HTTP engine that powers Retrofit under the hood
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+
+    // OkHttp Logging Interceptor: Logs every API request/response in Logcat
+    // VERY helpful for debugging — you can see exactly what JSON the API returns
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.12.0'
+
+    // -----------------------------------------------------------------------
+    //  COROUTINES
+    //  Kotlin Coroutines allow you to run async tasks (like API calls)
+    //  without blocking the UI thread (which would cause the app to freeze).
+    //  Used in Day 5's Repository and Day 6's ViewModel.
+    // -----------------------------------------------------------------------
+
+    // Core coroutines library
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3'
+
+    // Android-specific coroutines: adds Dispatchers.Main for UI-thread work
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
+
+    // -----------------------------------------------------------------------
+    //  VIEWMODEL
+    //  Lifecycle-aware ViewModel for Compose.
+    //  viewModel() composable function — used in Day 9's HomeScreen.
+    // -----------------------------------------------------------------------
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0'
+
+    // -----------------------------------------------------------------------
+    //  IMAGE LOADING — COIL
+    //  Coil loads images from URLs asynchronously and caches them.
+    //  Used in Day 8's NewsCard to display article thumbnail images.
+    // -----------------------------------------------------------------------
+    implementation 'io.coil-kt:coil-compose:2.5.0'
+
+    // -----------------------------------------------------------------------
+    //  WEBVIEW (for Article Detail Screen)
+    //  The Accompanist WebView wrapper makes it easy to embed WebViews
+    //  in Compose. Used in Day 10's ArticleDetailScreen.
+    // -----------------------------------------------------------------------
+    implementation 'com.google.accompanist:accompanist-webview:0.32.0'
+
+    // -----------------------------------------------------------------------
+    //  GOOGLE GENERATIVE AI (GEMINI)
+    //  The official Google AI SDK for Android.
+    //  Used in Day 11 (GeminiClient.kt) for AI article summarization.
+    // -----------------------------------------------------------------------
+    implementation 'com.google.ai.client.generativeai:generativeai:0.2.2'
+
+    // -----------------------------------------------------------------------
+    //  ROOM DATABASE (OFFLINE BOOKMARKS)
+    //  Room is Android's SQLite ORM — makes database operations simple.
+    //  Used in Day 14 (ArticleDao.kt + NewsDatabase.kt) for bookmarking.
+    // -----------------------------------------------------------------------
+
+    // Room Runtime: The core Room library
+    implementation 'androidx.room:room-runtime:2.6.1'
+
+    // Room KTX: Coroutine support for Room (suspend functions in DAOs)
+    implementation 'androidx.room:room-ktx:2.6.1'
+
+    // Room Compiler: Generates database code at compile time (annotation processor)
+    // NOTE: This uses 'kapt' (Kotlin Annotation Processing), not 'implementation'
+    kapt 'androidx.room:room-compiler:2.6.1'
+
+    // -----------------------------------------------------------------------
+    //  TESTING
+    //  Libraries for writing and running tests.
+    //  These are only included in test builds, not the final APK.
+    // -----------------------------------------------------------------------
+
+    // JUnit 4: The standard unit testing framework for Java/Kotlin
+    testImplementation 'junit:junit:4.13.2'
+
+    // AndroidX JUnit: JUnit extensions for Android instrumented tests
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+
+    // Espresso: UI testing framework for testing real user interactions
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    // Compose UI Test: Testing utilities for Compose screens
+    androidTestImplementation platform('androidx.compose:compose-bom:2024.02.00')
+    androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
+
+    // Debug-only tools (only included in debug builds, not release APK)
+    debugImplementation 'androidx.compose.ui:ui-tooling'           // Enables @Preview rendering
+    debugImplementation 'androidx.compose.ui:ui-test-manifest'     // Test manifest entries
+}

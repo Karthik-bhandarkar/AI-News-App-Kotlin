@@ -1,0 +1,40 @@
+# ============================================================
+#  .gitignore — Files to exclude from Git
+#  Day 1 of 14: Project Skeleton + Build Configuration
+# ============================================================
+#
+#  WHAT THIS FILE DOES:
+#  --------------------
+#  Tells Git which files to IGNORE — meaning they will never be
+#  uploaded to GitHub, even if you run "git add ."
+#
+#  The most important entry is 'local.properties' — that file
+#  contains your secret API keys and must never be public.
+# ============================================================
+
+# ----- SECRET FILES (most important!) -----
+# Your API keys live here — NEVER commit this to GitHub
+local.properties
+
+# ----- ANDROID BUILD OUTPUTS -----
+# Generated files that can be rebuilt — no need to track them
+*.iml
+.gradle
+/local.properties
+/.idea
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+*.apk
+*.aab
+
+# ----- ANDROID STUDIO FILES -----
+# IDE configuration files — these differ per developer's machine
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
