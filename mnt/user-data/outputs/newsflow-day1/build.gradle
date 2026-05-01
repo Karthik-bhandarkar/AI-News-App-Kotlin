@@ -1,0 +1,44 @@
+/**
+ * ============================================================
+ *  NewsFlow — build.gradle (Project level)
+ *  Day 1 of 14: Project Skeleton + Build Configuration
+ * ============================================================
+ *
+ *  WHAT THIS FILE DOES:
+ *  --------------------
+ *  This is the ROOT-level build file — it applies to the ENTIRE project,
+ *  not just the app module. Think of it as the "global settings" file.
+ *
+ *  It declares the versions of the main build tools:
+ *    - Android Gradle Plugin (AGP): compiles Android apps
+ *    - Kotlin Plugin: compiles Kotlin code
+ *
+ *  IMPORTANT: This file lives at the ROOT of your project (not inside /app).
+ *  There are TWO build.gradle files in every Android project:
+ *    → /build.gradle          ← THIS FILE (project level)
+ *    → /app/build.gradle      ← the other file (app module level)
+ *
+ *  CONNECTIONS:
+ *  → The 'kapt' plugin here enables Room annotation processing in app/build.gradle (Day 14)
+ * ============================================================
+ */
+
+// ---------------------------------------------------------------------------
+// PLUGINS BLOCK (project level)
+// Declares plugin versions for the entire project.
+// 'apply false' means: make this plugin available, but don't apply it here —
+// each module (like /app) will apply it in its own build.gradle.
+// ---------------------------------------------------------------------------
+plugins {
+    // Android Gradle Plugin — knows how to build, test, and package Android apps
+    // Version 8.2.2 supports Android 14 (API 34) and Kotlin 1.9.x
+    id 'com.android.application' version '8.2.2' apply false
+
+    // Kotlin Android plugin — compiles our .kt files
+    // Must be compatible with the Compose compiler version in app/build.gradle
+    id 'org.jetbrains.kotlin.android' version '1.9.22' apply false
+
+    // Kotlin KAPT (Kotlin Annotation Processing Tool)
+    // Required by Room (Day 14) to generate database code at compile time
+    id 'org.jetbrains.kotlin.kapt' version '1.9.22' apply false
+}
