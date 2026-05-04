@@ -29,7 +29,7 @@ local.properties
 .cxx
 *.apk
 *.aab
-
+print("hello")
 # ----- ANDROID STUDIO FILES -----
 # IDE configuration files — these differ per developer's machine
 /.idea/caches
