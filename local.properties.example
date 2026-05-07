@@ -1,0 +1,13 @@
+# =============================================================================
+#  local.properties.example — API Key Template  |  Added: Day 1
+#  SAFE TO COMMIT — contains no real keys.
+#  Copy to local.properties and fill in your keys. local.properties is gitignored.
+#
+#  CONNECTIONS:
+#  → app/build.gradle reads these and injects into BuildConfig (Day 1)
+#  → Constants.kt reads via BuildConfig.NEWS_API_KEY (Day 2)
+#  → GeminiClient.kt reads via BuildConfig.GEMINI_API_KEY (Day 11)
+# =============================================================================
+sdk.dir=/Users/YOUR_USERNAME/Library/Android/sdk
+NEWS_API_KEY=REPLACE_WITH_YOUR_NEWS_API_KEY
+GEMINI_API_KEY=REPLACE_WITH_YOUR_GEMINI_API_KEY
