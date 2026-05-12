@@ -1,0 +1,22 @@
+// =============================================================================
+//  settings.gradle — Gradle Settings File
+//  Version: 0.1.0  |  Added: Day 1
+// =============================================================================
+
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = "NewsFlow"
+include ':app'
+  # project stilll loading with apps and all 
