@@ -1,0 +1,47 @@
+// =============================================================================
+//  settings.gradle
+//  NewsFlow Android Project
+//  Day 1 | File 1 of 13
+// =============================================================================
+//
+//  PURPOSE:
+//  This file tells Gradle two things:
+//    1. The NAME of this project (shown in Android Studio title bar)
+//    2. Which SUB-MODULES exist (we only have one: "app")
+//
+//  THINK OF IT LIKE:
+//  A table of contents for your project.
+//  Every Android project must have this file at the root.
+//
+//  CONNECTIONS TO OTHER FILES:
+//  → build.gradle (root) — declares the build tool versions
+//  → app/build.gradle    — the "app" module listed in include ':app'
+//
+// =============================================================================
+
+// Where to download the build PLUGINS (tools that compile the app)
+pluginManagement {
+    repositories {
+        google()           // Google's Maven repo — Android, Compose, etc.
+        mavenCentral()     // Main open-source library repository
+        gradlePluginPortal() // Gradle's own plugin registry
+    }
+}
+
+// Where to download the app's LIBRARIES (Retrofit, Compose, Room, etc.)
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+// The project name — shown in Android Studio's title bar and project panel
+rootProject.name = "NewsFlow"
+
+// Register the app module.
+// ':app' corresponds to the /app folder in the project root.
+// In larger projects you'd add more modules here:
+// include ':app', ':core', ':feature-home'
+include ':app'
