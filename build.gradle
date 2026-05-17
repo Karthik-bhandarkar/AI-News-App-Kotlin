@@ -1,9 +1,41 @@
 // =============================================================================
-//  build.gradle — Project-Level Build Script
-//  Version: 0.1.0  |  Added: Day 1
+//  build.gradle — Project Level Build Script
+//  NewsFlow Android Project
+//  Day 1 | File 2 of 13
 // =============================================================================
+//
+//  PURPOSE:
+//  This is the ROOT-level Gradle file. It applies to the ENTIRE project.
+//  It only declares the VERSION of the build tools themselves —
+//  NOT the app libraries (those go in app/build.gradle, File 3).
+//
+//  TWO build.gradle FILES EXIST IN THIS PROJECT:
+//  → /build.gradle        ← THIS FILE (project level — tool versions)
+//  → /app/build.gradle    ← App module (libraries the app uses)
+//
+//  CONNECTIONS TO OTHER FILES:
+//  → settings.gradle (File 1)    — declares the project name and modules
+//  → app/build.gradle (File 3)   — applies these same plugin IDs (no version)
+//  → The kapt plugin is used by Room database in Day 14
+//
+// =============================================================================
+
 plugins {
+    // Android Gradle Plugin (AGP)
+    // Knows how to compile, test, and package Android apps.
+    // 'apply false' = declare the version here, but don't apply it yet.
+    // app/build.gradle will apply it without a version number.
     id 'com.android.application' version '8.2.2' apply false
+
+    // Kotlin Android Plugin
+    // Compiles our .kt source files into JVM bytecode.
+    // Version 1.9.22 is REQUIRED to be compatible with Compose Compiler 1.5.8
+    // (set in app/build.gradle composeOptions block)
     id 'org.jetbrains.kotlin.android' version '1.9.22' apply false
-  id 'com.google.devtools.ksp' version '1.9.22-1.0.17' apply false
+
+    // Kotlin KAPT — Kotlin Annotation Processing Tool
+    // Reads annotations like @Entity, @Dao, @Database (Room — Day 14)
+    // and auto-generates the database implementation code at compile time.
+    // Without this, Room annotations do nothing.
+    id 'org.jetbrains.kotlin.kapt' version '1.9.22' apply false
 }
