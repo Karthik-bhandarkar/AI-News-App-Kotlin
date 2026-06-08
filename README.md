@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- Animated Header -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=NewsFlow&fontSize=80&fontColor=fff&animation=twinkling&fontAlignY=35&desc=AI-Powered%20Android%20News%20App&descAlignY=60&descSize=22" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=NewsFlow&fontSize=80&fontColor=fff&animation=twinkling&fontAlignY=35&desc=AI-Powered%20Android%20News%20App&descAlignY=60&descSize=22"   width="100%"/>
 
 <!-- Typing SVG -->
 <a href="https://git.io/typing-svg">
@@ -40,7 +40,7 @@
 
 **NewsFlow** is a modern Android news application built with **Kotlin** and **Jetpack Compose** that delivers breaking headlines and in-depth articles — in real time. Designed with clean architecture principles (MVVM) and enhanced with **Generative AI capabilities**, NewsFlow is where mobile development meets intelligent content delivery.
 
-> 🎓 Built as part of an internship in **Android Development & Generative AI** — a hands-on exploration of cutting-edge Android tooling and AI integration.
+> 🎓 Built as part of an internship in   **Android Development & Generative AI** — a hands-on exploration of cutting-edge Android tooling and AI integration.
 
 ---
 
