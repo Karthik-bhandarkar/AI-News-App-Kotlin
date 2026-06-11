@@ -53,7 +53,7 @@ fun NewsFlowPlaceholder() {
             modifier = Modifier.fillMaxSize().padding(innerPadding),
             contentAlignment = Alignment.Center
         ) {
-            Text(text = "NewsFlow — Day 1 ✓\nProject scaffold is working.")
+            Text(text = "NewsFlow — Day 2 ✓\nProject scaffold is working.")
         }
     }
 }
