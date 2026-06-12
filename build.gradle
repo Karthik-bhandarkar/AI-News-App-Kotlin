@@ -39,3 +39,22 @@ plugins {
     // Without this, Room annotations do nothing.
     id 'org.jetbrains.kotlin.kapt' version '1.9.22' apply false
 }
+plugins {
+    // Android Gradle Plugin (AGP)
+    // Knows how to compile, test, and package Android apps.
+    // 'apply false' = declare the version here, but don't apply it yet.
+    // app/build.gradle will apply it without a version number.
+    id 'com.android.application' version '8.2.2' apply false
+
+    // Kotlin Android Plugin
+    // Compiles our .kt source files into JVM bytecode.
+    // Version 1.9.22 is REQUIRED to be compatible with Compose Compiler 1.5.8
+    // (set in app/build.gradle composeOptions block)
+    id 'org.jetbrains.kotlin.android' version '1.9.22' apply false
+
+    // Kotlin KAPT — Kotlin Annotation Processing Tool
+    // Reads annotations like @Entity, @Dao, @Database (Room — Day 14)
+    // and auto-generates the database implementation code at compile time.
+    // Without this, Room annotations do nothing.
+    id 'org.jetbrains.kotlin.kapt' version '1.9.22' apply false
+}
