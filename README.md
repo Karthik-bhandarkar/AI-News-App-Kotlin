@@ -156,7 +156,7 @@ NewsFlow follows the **MVVM (Model-View-ViewModel)** architecture for a clean, t
 ### Prerequisites
 
 - Android Studio **Hedgehog** or later
-- Android SDK **24+**
+- Android SDK **24.0+**
 - Kotlin **2.0+**
 - A valid **[News API Key](https://newsapi.org/)**
 
