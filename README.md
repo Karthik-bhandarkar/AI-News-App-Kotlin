@@ -53,7 +53,7 @@
 | 🔴 **Live Headlines** | Fetches the latest news from News API in real time | ✅ Live |
 | 📄 **Article Detail View** | Deep-dive into full article content | ✅ Live |
 | 🎨 **Compose-First UI** | 100% declarative UI with Jetpack Compose | ✅ Live |
-| 📡 **Real-Time Data** | Seamless API integration with live JSON parsing | ✅ Live |
+| 📡 **Real-Time Data** | Seamless API integration with live JSON parsing |  🔜 Soon  |
 | 🧠 **AI Summaries** | Generative AI to summarize long-form articles | 🔜 Soon |
 | 🔊 **Voice Narration** | AI-generated text-to-speech reading | 🔜 Soon |
 | 🎯 **Personalized Feed** | Recommendations based on reading patterns | 🔜 Soon |
