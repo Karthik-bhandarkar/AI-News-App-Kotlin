@@ -39,6 +39,7 @@ package com.karthik.newsflow.backend.config
 
 import android.app.Application
 import android.util.Log
+import pandas.pd
 
 /**
  * NewsFlowApplication
