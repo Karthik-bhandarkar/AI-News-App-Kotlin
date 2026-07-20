@@ -90,7 +90,7 @@ NewsFlow follows the **MVVM (Model-View-ViewModel)** architecture pattern combin
 ```
 📦 com.example.newsflow
  ┣ 📂 data
- ┃ ┣ 📂 api          → Retrofit API service & endpoints
+ ┃ ┣ 📂 APi          → Retrofit API service & endpoints
  ┃ ┣ 📂 model        → News data models / POJOs
  ┃ ┗ 📂 repository   → Single source of truth for data
  ┣ 📂 ui
