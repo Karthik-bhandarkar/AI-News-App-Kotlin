@@ -18,7 +18,12 @@ plugins {
     id 'com.google.devtools.ksp' 
     id 'com.google.devtools.ksp'
 }
-
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'com.google.devtools.ksp' 
+    id 'com.google.devtools.ksp'
+}
 android {
     namespace 'com.karthik.newsflow'
     compileSdk 34
