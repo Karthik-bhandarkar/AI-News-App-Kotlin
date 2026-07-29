@@ -1,343 +1,144 @@
-```markdown
-<div align="center">
+# 📰 NewsFlow
 
-<!-- Animated Header -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=NewsFlow&fontSize=80&fontColor=fff&animation=twinkling&fontAlignY=35" width="100%"/>
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=220&text=NewsFlow&fontSize=60&color=gradient" />
+</p>
 
-<!-- Typing SVG -->
-<a href="https://git.io/typing-svg">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=1000&color=7F52FF&center=true&vCenter=true&width=600&lines=Stay+Informed.+Stay+Smart.;Real-Time+News+%2B+Generative+AI;Built+with+Kotlin+%26+Compose" alt="Typing SVG" />
-</a>
-
-<br/><br/>
-
-<!-- Tech Badges -->
-<img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white"/>
-<img src="https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white"/>
-<img src="https://img.shields.io/badge/Jetpack%20Compose-4285F4?style=for-the-badge&logo=jetpackcompose&logoColor=white"/>
-<img src="https://img.shields.io/badge/MVVM-FF6F00?style=for-the-badge&logo=architecture&logoColor=white"/>
-<img src="https://img.shields.io/badge/Generative%20AI-8E44AD?style=for-the-badge&logo=googlegemini&logoColor=white"/>
-
-<br/><br/>
-
-<!-- Repo Stats -->
-<a href="https://github.com/Karthik-bhandarkar/AI-News-App-Kotlin/stargazers">
-  <img src="https://img.shields.io/github/stars/Karthik-bhandarkar/AI-News-App-Kotlin?style=social" alt="Stars"/>
-</a>
-<a href="https://github.com/Karthik-bhandarkar/AI-News-App-Kotlin/network">
-  <img src="https://img.shields.io/github/forks/Karthik-bhandarkar/AI-News-App-Kotlin?style=social" alt="Forks"/>
-</a>
-<a href="https://github.com/Karthik-bhandarkar/AI-News-App-Kotlin/issues">
-  <img src="https://img.shields.io/github/issues/Karthik-bhandarkar/AI-News-App-Kotlin?color=red" alt="Issues"/>
-</a>
-<img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"/>
-<img src="https://img.shields.io/github/last-commit/Karthik-bhandarkar/AI-News-App-Kotlin?color=blueviolet" alt="Last Commit"/>
-
-</div>
+<p align="center">
+  <b>A modern Android News App built with Kotlin, Jetpack Compose, MVVM, Retrofit, and Coroutines.</b>
+</p>
 
 ---
 
-## 🌟 What is NewsFlow?
+## ✨ Features
 
-**NewsFlow** is a modern, production-ready Android news application built with **Kotlin** and **Jetpack Compose** that delivers breaking headlines and in-depth articles in real time. Designed with clean architecture principles, reactive data flows, and cutting-edge Android development patterns.
-
-> 🎓 Built as part of an internship in **Android Development & Generative AI** — a hands-on exploration of cutting-edge Android tooling and AI integration.
-
----
-
-## ✨ Features at a Glance
-
-<div align="center">
-
-| Feature | Description | Status |
-|:---:|:---|:---:|
-| 🔴 **Live Headlines** | Fetches the latest news from News API in real time | ✅ Live |
-| 📄 **Article Detail View** | Deep-dive into full article content with rich formatting | ✅ Live |
-| 🎨 **Compose-First UI** | 100% declarative UI with Jetpack Compose | ✅ Live |
-| 📡 **Real-Time Data** | Seamless API integration with live JSON parsing | ✅ Live |
-| 🧠 **AI Summaries** | Generative AI to summarize long-form articles | 🔜 Soon |
-| 🔊 **Voice Narration** | AI-generated text-to-speech reading | 🔜 Soon |
-| 🎯 **Personalized Feed** | Recommendations based on reading patterns | 🔜 Soon |
-| 🌙 **Dark Mode** | System-aware dark theme support | 🔜 Soon |
-| 🔖 **Offline Reading** | Bookmark & cache articles for offline access | 🔜 Soon |
-
-</div>
+- 📰 Real-time news from NewsAPI
+- 📱 Modern UI with Jetpack Compose
+- 🏗️ MVVM Architecture
+- 🔄 Coroutines & StateFlow
+- 🌐 Retrofit networking
+- 📖 Article detail screen
+- 🔍 Clean and scalable codebase
+- 🤖 Ready for future Gemini AI integration
 
 ---
 
-## 🖼️ Screenshots
+## 📸 Screenshots
 
-<div align="center">
+> Add screenshots inside a `screenshots/` folder.
 
-| Home Feed | Article Detail | AI Summary |
-|:---:|:---:|:---:|
-| <img src="screenshots/home.png" width="200" alt="Home Feed"/> | <img src="screenshots/detail.png" width="200" alt="Article Detail"/> | *Coming Soon* |
-
-> 📸 Place your screenshots in the `/screenshots` folder as `home.png` and `detail.png` to populate this section.
-
-</div>
+| Home | Details |
+|------|---------|
+| ![](screenshots/home.png) | ![](screenshots/detail.png) |
 
 ---
 
-## 🏗️ Architecture
-
-<div align="center">
-
-NewsFlow follows the **MVVM (Model-View-ViewModel)** architecture pattern combined with **Repository Pattern** for clean separation of concerns and testability.
-
-</div>
+## 🏗 Architecture
 
 ```
-📦 com.example.newsflow
- ┣ 📂 data
- ┃ ┣ 📂 APi          → Retrofit API service & endpoints
- ┃ ┣ 📂 model        → News data models / POJOs
- ┃ ┗ 📂 repository   → Single source of truth for data
- ┣ 📂 ui
- ┃ ┣ 📂 screens      → Compose screens (Home, Detail, etc.)
- ┃ ┣ 📂 components   → Reusable Composable widgets
- ┃ ┗ 📂 theme        → App theme, colors, typography
- ┣ 📂 viewmodel      → StateFlow-driven ViewModels
- ┣ 📂 utils          → Helper functions & extensions
- ┗ 📜 MainActivity.kt
-```
-
-### Data Flow
-
-```
-┌──────────────┐     HTTP      ┌───────────────┐     Parse     ┌──────────────────┐
-│   News API   │ ─────────────▶│   Retrofit    │ ─────────────▶│  Data Repository │
-└──────────────┘               └───────────────┘               └────────┬─────────┘
-                                                                        │ StateFlow
-                                                                        ▼
-                                                              ┌──────────────────┐
-                                                              │    ViewModel     │
-                                                              └────────┬─────────┘
-                                                                       │ Reactive
-                                                                       ▼
-                                                              ┌──────────────────┐
-                                                              │  Composable UI   │
-                                                              └──────────────────┘
+UI (Compose)
+      │
+ViewModel
+      │
+Repository
+      │
+Retrofit
+      │
+NewsAPI
 ```
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠 Tech Stack
 
-<div align="center">
-
-### Core Framework
-
-| Technology | Purpose | Version |
-|:---|:---|:---:|
-| **Kotlin** | Primary language | 2.0+ |
-| **Jetpack Compose** | Declarative UI framework | Latest |
-| **MVVM** | Architecture pattern | — |
-| **Coroutines + Flow** | Async data handling | Latest |
-
-### Networking & Data
-
-| Library | Purpose | Version |
-|:---|:---|:---:|
-| **Retrofit 2** | HTTP client for API calls | 2.9+ |
-| **OkHttp** | Request logging & interceptors | 4.0+ |
-| **Gson** | JSON deserialization | 2.10+ |
-
-### AI & Intelligence
-
-| Technology | Purpose | Status |
-|:---|:---|:---:|
-| **Google Gemini** | Article summarization & insights | 🔜 Planned |
-| **News API** | Real-time news content source | ✅ Active |
-| **ML Kit** | On-device ML capabilities | 🔜 Planned |
-
-### Testing & Quality
-
-| Tool | Purpose |
-|:---|:---|
-| **JUnit 4** | Unit testing framework |
-| **Mockito** | Mocking for tests |
-| **Compose Testing** | Compose UI testing |
-
-</div>
+- Kotlin
+- Jetpack Compose
+- MVVM
+- Retrofit
+- OkHttp
+- Gson
+- Coroutines
+- StateFlow
+- Material 3
 
 ---
 
-## ⚙️ Getting Started
+## 📂 Project Structure
 
-### Prerequisites
+```
+app/
+ ├── data/
+ │   ├── api/
+ │   ├── model/
+ │   └── repository/
+ ├── ui/
+ ├── viewmodel/
+ ├── utils/
+ └── MainActivity.kt
+```
 
-- Android Studio **Hedgehog** or later
-- Android SDK **24.0+**
-- Kotlin **2.0+**
-- A valid **[News API Key](https://newsapi.org/)**
-- Gradle **8.0+**
+---
 
-### Installation
+## 🚀 Getting Started
 
-**1. Clone the Repository**
+### Clone
+
 ```bash
 git clone https://github.com/Karthik-bhandarkar/AI-News-App-Kotlin.git
-cd AI-News-App-Kotlin
 ```
 
-**2. Add Your API Key**
+### API Key
 
-Open (or create) `local.properties` in the project root:
+Create `local.properties`
+
 ```properties
-NEWS_API_KEY=your_api_key_here
+NEWS_API_KEY=YOUR_API_KEY
 ```
 
-Or update the constants file directly:
-```kotlin
-const val API_KEY = "your_api_key_here"
-const val BASE_URL = "https://newsapi.org/v2/"
-```
+### Run
 
-**3. Build & Run**
 ```bash
-# Open in Android Studio and click Run ▶
-# Or via terminal:
-./gradlew assembleDebug
 ./gradlew installDebug
 ```
 
-**4. Run on Device**
-```bash
-# Launch the app on connected device/emulator
-adb shell am start -n com.example.newsflow/.MainActivity
-```
-
 ---
 
-## 🤖 Generative AI Integration — Roadmap
+## 📋 Roadmap
 
-<div align="center">
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                  🧠 AI Features Roadmap                      │
-├────────────────────┬──────────────────────────────────────┤
-│  Smart Summaries   │  TL;DR from full articles using Gemini  │
-│  Voice Narration   │  AI text-to-speech news playback        │
-│  Personalization   │  Feed recommendations via ML            │
-│  Semantic Search   │  Search by meaning, not just keywords   │
-└────────────────────┴──────────────────────────────────────┘
-```
-
-</div>
-
----
-
-## 🗺️ Future Enhancements
-
-- [x] 🔴 Live news headlines from News API
-- [x] 📄 Article detail view
-- [x] 🏗️ MVVM + Compose architecture
-- [x] 📡 Real-time data fetching
-- [ ] 🤖 AI-powered article summarization (Gemini API)
-- [ ] 🔊 Text-to-speech news reading
-- [ ] 🎯 Personalized recommendations engine
-- [ ] 🌙 Dark mode support
-- [ ] 🔖 Bookmark & save articles offline
-- [ ] 🌍 Category & country-based filtering
-- [ ] 🔔 Breaking news push notifications
-- [ ] 📊 Reading progress tracking
-- [ ] 🔍 Advanced search & filters
-- [ ] 📤 Share articles with friends
-
----
-
-## 📚 Learning Outcomes
-
-This project was a hands-on journey through modern Android development:
-
-| Skill | What I Learned |
-|:---|:---|
-| ✅ **API Integration** | Connecting to and parsing real-world REST APIs |
-| ✅ **Jetpack Compose** | Building reactive, declarative UIs |
-| ✅ **MVVM Pattern** | Separating concerns for maintainable code |
-| ✅ **Coroutines & Flow** | Managing async data streams elegantly |
-| ✅ **Generative AI Concepts** | Applying AI to real mobile use cases |
-| ✅ **Android Best Practices** | Modern development patterns & tooling |
+- [x] Live News
+- [x] Article Details
+- [x] MVVM
+- [ ] Bookmark Articles
+- [ ] Dark Mode
+- [ ] Search
+- [ ] Gemini AI Summaries
+- [ ] Offline Reading
+- [ ] Push Notifications
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Here's how:
-
-1. 🍴 Fork the repository
-2. 🌿 Create a new branch: `git checkout -b feature/your-feature`
-3. 💾 Commit your changes: `git commit -m 'Add some feature'`
-4. 📤 Push to the branch: `git push origin feature/your-feature`
-5. 🔃 Open a Pull Request
-
-Please ensure your code follows Kotlin style guidelines and includes appropriate tests.
+1. Fork the repository.
+2. Create a feature branch.
+3. Commit your changes.
+4. Open a Pull Request.
 
 ---
 
-## 🐛 Troubleshooting
+## 📄 License
 
-### Common Issues
-
-**API Key not working?**
-- Verify your News API key is valid at [newsapi.org](https://newsapi.org/)
-- Check that `local.properties` has the correct key
-- Ensure your API plan supports the endpoints being used
-
-**Compose compilation errors?**
-- Update Android Studio to the latest version
-- Run `./gradlew clean build`
-- Invalidate caches in Android Studio
-
-**Network errors?**
-- Check your internet connection
-- Verify the News API is accessible
-- Check OkHttp interceptor logs
+This project is licensed under the MIT License.
 
 ---
 
-## 📜 License
-
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
-
----
-
-## 🙏 Acknowledgements
-
-- [**News API**](https://newsapi.org/) — Real-time news data provider
-- [**Jetpack Compose**](https://developer.android.com/jetpack/compose) — Google's modern UI toolkit
-- [**Joel Kanyi**](https://github.com/joelkanyi) — Original project inspiration
-- Internship mentors and peers for guidance throughout this project
-- Android developer community for excellent resources and support
-
----
-
-## 📬 Contact
-
-<div align="center">
+## 👨‍💻 Author
 
 **Karthik Bhandarkar**
 
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Karthik-bhandarkar)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/karthik-bhandarkar)
-[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:karthik.bhandarkar@example.com)
-
-*Developed with ❤️ as part of an Android Development & Generative AI Internship*
-
-</div>
+- GitHub: https://github.com/Karthik-bhandarkar
+- LinkedIn: https://linkedin.com/in/karthik-bhandarkar
 
 ---
 
-<!-- Footer Wave -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer" width="100%"/>
-
-<div align="center">
-
-⭐ **Found this helpful? Give it a star — it means a lot!** ⭐
-
-![Profile Views](https://komarev.com/ghpvc/?username=Karthik-bhandarkar&color=blueviolet&style=flat-square&label=Profile+Views)
-
-</div>
-```
+⭐ If you like this project, consider giving it a star!
